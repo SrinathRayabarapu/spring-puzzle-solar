@@ -11,7 +11,6 @@ import org.springframework.data.rest.core.annotation.RestResource;
  * @author Crossover
  */
 @RestResource(exported = false)
-public interface HourlyElectricityRepository 
-    extends PagingAndSortingRepository<HourlyElectricity,Long> {
+public interface HourlyElectricityRepository extends PagingAndSortingRepository<HourlyElectricity,Long> {
   Page<HourlyElectricity> findAllByPanelIdOrderByReadingAtDesc(Long panelId,Pageable pageable);
 }

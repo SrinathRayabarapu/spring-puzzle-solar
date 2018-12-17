@@ -45,11 +45,8 @@ public class PanelControllerTest {
 
   @Test
   public void testPanelShouldBeRegistered() throws Exception {
-    HttpEntity<Object> panel = getHttpEntity(
-        "{\"serial\": \"232323\", \"longitude\": \"54.123232\"," 
-            + " \"latitude\": \"54.123232\",\"brand\":\"tesla\" }");
-    ResponseEntity<Panel> response = template.postForEntity(
-        "/api/register", panel, Panel.class);
+    HttpEntity<Object> panel = getHttpEntity("{\"serial\": \"232323\", \"longitude\": \"54.123232\"," + " \"latitude\": \"54.123232\",\"brand\":\"tesla\" }");
+    ResponseEntity<Panel> response = template.postForEntity("/api/register", panel, Panel.class);
     Assert.assertEquals(202,response.getStatusCode().value());
   }
 

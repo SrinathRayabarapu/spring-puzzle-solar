@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
@@ -86,10 +87,19 @@ public class PanelController {
   public ResponseEntity<List<DailyElectricity>> allDailyElectricityFromYesterday(
       @PathVariable(value = "panel-serial") String panelSerial) {
     List<DailyElectricity> dailyElectricityForPanel = new ArrayList<>();
+    
     /**
      * IMPLEMENT THE LOGIC HERE and FEEL FREE TO MODIFY OR ADD CODE TO RELATED CLASSES.
      * MAKE SURE NOT TO CHANGE THE SIGNATURE OF ANY END POINT. NO PAGINATION IS NEEDED HERE.
      */
+    
+    Panel panel = panelService.findBySerial(panelSerial);
+    
+    Page<HourlyElectricity> page = hourlyElectricityService.getAllHourlyElectricityByPanelId(
+            panel.getId(), PageRequest.of(0, 24));
+
+    List<HourlyElectricity> content = page.getContent();
+
     return ResponseEntity.ok(dailyElectricityForPanel);
   }
 }

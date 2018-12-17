@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
  * @author Crossover
  *
  */
-
 @Service
 public class HourlyElectricityServiceImpl implements HourlyElectricityService {
+	
   @Autowired
   HourlyElectricityRepository hourlyElectricityRepository;
   
